@@ -11,6 +11,10 @@ static void CheckPing(int client) {
         return;
     }
 
+    if (Forward_OnClient(client) == Plugin_Stop) {
+        return;
+    }
+
     int ping = GetPing(client);
     int maxPing = Variable_MaxPing();
 
