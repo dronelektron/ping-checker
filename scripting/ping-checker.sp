@@ -22,5 +22,5 @@ public void OnPluginStart() {
 }
 
 public void OnMapStart() {
-    Timer_CkeckPlayersPing();
+    Timer_CkeckPlayersPing_Create();
 }

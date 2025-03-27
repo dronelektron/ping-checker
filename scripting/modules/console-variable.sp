@@ -1,9 +1,27 @@
 static ConVar g_maxPing;
+static ConVar g_interval;
 
 void Variable_Create() {
     g_maxPing = CreateConVar("sm_pingchecker_max_ping", "150", "Maximum ping");
+    g_interval = CreateConVar("sm_pingchecker_interval", "10", "How often to check the ping (in seconds)");
+    g_interval.AddChangeHook(OnInterval);
 }
 
 int Variable_MaxPing() {
     return g_maxPing.IntValue;
+}
+
+int Variable_Interval() {
+    return g_interval.IntValue;
+}
+
+static void OnInterval(ConVar variable, const char[] oldValue, const char[] newValue) {
+    int interval = StringToInt(newValue);
+
+    if (interval < TIMER_DELAY_MINIMUM) {
+        g_interval.SetInt(TIMER_DELAY_MINIMUM);
+    }
+
+    Timer_CkeckPlayersPing_Kill();
+    Timer_CkeckPlayersPing_Create();
 }
