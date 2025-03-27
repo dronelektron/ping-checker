@@ -7,11 +7,7 @@ void UseCase_CheckPlayersPing() {
 }
 
 static void CheckPing(int client) {
-    if (IsFakeClient(client) || IsClientSourceTV(client)) {
-        return;
-    }
-
-    if (Forward_OnClient(client) == Plugin_Stop) {
+    if (IsFakeClient(client) || IsClientIgnored(client)) {
         return;
     }
 
@@ -40,4 +36,8 @@ static int GetPing(int client) {
     float milliseconds = seconds * MILLISECONDS_IN_SECOND;
 
     return RoundToNearest(milliseconds);
+}
+
+static bool IsClientIgnored(int client) {
+    return Forward_OnClient(client) == Plugin_Stop;
 }
