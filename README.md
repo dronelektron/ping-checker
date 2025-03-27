@@ -13,4 +13,8 @@ Allows you to kick players with high ping
 ### Installation
 
 * Download latest [release](https://github.com/dronelektron/ping-checker/releases)
-* Extract `plugins` folder to `addons/sourcemod` folder of your server
+* Extract `plugins` and `translations` folders to `addons/sourcemod` folder of your server
+
+### Console Variables
+
+* sm_pingchecker_max_ping - Maximum ping [default: "150"]
