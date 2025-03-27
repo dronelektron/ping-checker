@@ -18,4 +18,5 @@ Allows you to kick players with high ping
 ### Console Variables
 
 * sm_pingchecker_max_ping - Maximum ping [default: "150"]
+* sm_pingchecker_max_warnings - The number of warnings after which the player will be kicked [default: "3"]
 * sm_pingchecker_interval - How often to check the ping (in seconds) [default: "10", minimum: "3"]

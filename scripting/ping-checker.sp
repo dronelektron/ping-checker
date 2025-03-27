@@ -3,6 +3,7 @@
 #include "ping-checker/timer"
 #include "ping-checker/use-case"
 
+#include "modules/client.sp"
 #include "modules/console-variable.sp"
 #include "modules/timer.sp"
 #include "modules/use-case.sp"
@@ -23,4 +24,8 @@ public void OnPluginStart() {
 
 public void OnMapStart() {
     Timer_CkeckPlayersPing_Create();
+}
+
+public void OnClientConnected(int client) {
+    Client_Reset(client);
 }

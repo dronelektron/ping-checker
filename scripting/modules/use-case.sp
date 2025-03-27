@@ -14,9 +14,21 @@ static void CheckPing(int client) {
     int ping = GetPing(client);
     int maxPing = Variable_MaxPing();
 
-    if (ping > maxPing) {
-        KickClient(client, "%t", "High ping", ping, maxPing);
+    if (ping <= maxPing) {
+        Client_Reset(client);
+
+        return;
     }
+
+    int warnings = Client_GetWarnings(client);
+
+    if (warnings < Variable_MaxWarnings()) {
+        Client_AddWarnings(client);
+
+        return;
+    }
+
+    KickClient(client, "%t", "High ping", ping, maxPing);
 }
 
 static int GetPing(int client) {
