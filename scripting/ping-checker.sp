@@ -6,6 +6,7 @@
 #include "modules/client.sp"
 #include "modules/console-variable.sp"
 #include "modules/forward.sp"
+#include "modules/message.sp"
 #include "modules/timer.sp"
 #include "modules/use-case.sp"
 
