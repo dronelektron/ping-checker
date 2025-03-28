@@ -29,6 +29,7 @@ static void CheckPing(int client) {
     }
 
     KickClient(client, "%t", "High ping", ping, maxPing);
+    Message_HighPing(client, ping, maxPing);
 }
 
 static int GetPing(int client) {
