@@ -40,5 +40,15 @@ static int GetPing(int client) {
 }
 
 static bool IsClientIgnored(int client) {
+    if (IsAdmin(client) && Variable_IgnoreAdmins()) {
+        return true;
+    }
+
     return Forward_OnClient(client) == Plugin_Stop;
+}
+
+static bool IsAdmin(int client) {
+    AdminId id = GetUserAdmin(client);
+
+    return id.HasFlag(Admin_Generic);
 }
