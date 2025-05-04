@@ -2,12 +2,14 @@ static ConVar g_maxPing;
 static ConVar g_maxWarnings;
 static ConVar g_interval;
 static ConVar g_logging;
+static ConVar g_ignoreAdmins;
 
 void Variable_Create() {
     g_maxPing = CreateConVar("sm_pingchecker_max_ping", "150", "Maximum ping");
     g_maxWarnings = CreateConVar("sm_pingchecker_max_warnings", "3", "The number of warnings after which the player will be kicked");
     g_interval = CreateConVar("sm_pingchecker_interval", "10", "How often to check the ping (in seconds)");
     g_logging = CreateConVar("sm_pingchecker_logging", "1", "Enable (1) or disable (0) logging");
+    g_ignoreAdmins = CreateConVar("sm_pingchecker_ignore_admins", "1", "Ignore admins (yes - 1, no - 0)");
     g_interval.AddChangeHook(OnInterval);
 }
 
@@ -25,6 +27,10 @@ int Variable_Interval() {
 
 bool Variable_Logging() {
     return g_logging.BoolValue;
+}
+
+bool Variable_IgnoreAdmins() {
+    return g_ignoreAdmins.BoolValue;
 }
 
 static void OnInterval(ConVar variable, const char[] oldValue, const char[] newValue) {
